@@ -24,8 +24,7 @@
 	"search": {
 		"encoding": "utf-8",
 		"tables": {
-			"catalog": ["name", "announce", "content"],
-			"articles": ["name", "announce", "content"]
+			"table": ["field1", "field2"]
 		},
 		"limit": 10
 	}

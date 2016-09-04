@@ -24,11 +24,6 @@
 				"html":true,
 				"private":true
 			},
-			"fio":{
-				"placeholder":false,
-				"id":"fio",
-				"required":true
-			},
 			"phone":{
 				"placeholder":false
 			},
