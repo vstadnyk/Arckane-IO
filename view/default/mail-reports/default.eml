@@ -1,0 +1,5 @@
+<? foreach ($fields as $name => $field) { ?>
+	<p>
+		<b><? echo $form->lang->get($name); ?>: </b><? echo $form->mail_format($field, $name); ?>
+	</p>
+<? } ?>

@@ -1,0 +1,44 @@
+{
+	"fields":{
+		"h2":{
+			"tag":"h2",
+			"class":"text-normal padding-0-0-20",
+			"text":"{{lang->login_form_title}}",
+			"html":true
+		},
+		"mail":{
+			"required":true,
+			"type":"email",
+			"class":"row-100",
+			"pclass":"padding-0-0-10"
+		},
+		"pass":{
+			"required":true,
+			"encode":true,
+			"type":"password",
+			"class":"row-100",
+			"pclass":"padding-0-0-10"
+		},
+		"confirm":{
+			"tag":"confirm",
+			"class":"confirm padding-0-0-10",
+			"data-name":"status",
+			"html":true,
+			"private":true
+		},
+		"submit":{
+			"tag":"button",
+			"type":"submit",
+			"value":"{{lang->button_login}}",
+			"data-name":"login:button",
+			"private":true
+		}
+	},
+	"form":{
+		"class":"login-form",
+		"data-name":"login:form"
+	},
+	"table":false,
+	"uploaded_dir":false,
+	"mail-report":false
+}

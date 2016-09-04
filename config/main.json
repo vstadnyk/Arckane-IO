@@ -1,0 +1,32 @@
+{
+	"system": {
+		"name": "Arckane IO",
+		"version": "1.0",
+		"language": "en",
+		"languages": [],
+		"template": "default",
+		"page_items": "page",
+		"page_childs": "cpage",
+		"redirects": true,
+		"thumbs": true,
+		"mobile_detect": false,
+		"pages": ["search"],
+		"system_path": []
+	},
+	"site": {
+		"name":"Arckane demo"
+	},
+	"languages": {
+		"en": {
+			"name":"English"
+		}
+	},
+	"search": {
+		"encoding": "utf-8",
+		"tables": {
+			"catalog": ["name", "announce", "content"],
+			"articles": ["name", "announce", "content"]
+		},
+		"limit": 10
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"fields":{
+		"query":{
+			"value":"{{this->query}}",
+			"placeholder":"search...",
+			"p":false
+		},
+		"search":{
+			"tag":"button",
+			"type":"submit",
+			"class":"fa fa-search color-white size-14",
+			"value":"",
+			"p":false,
+			"private":true
+		}
+	},
+	"form":{
+		"method":"get",
+		"action":"/search.html",
+		"class":"search color-black"
+	}
+}

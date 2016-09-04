@@ -1,0 +1,1 @@
+<h2 <? echo $attr; ?>><? echo $field->text; ?></h2>
