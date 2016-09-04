@@ -167,7 +167,7 @@ class MySQL extends MySQLi {
 		$query .= $data['and'] ? ' AND '.$data['and'] : '';
 		$query .= $data['or'] ? ' OR '.$data['or'] : '';
 		
-		$query .= 'ORDER BY '.$data['table'].'.'.$data['order'].' '.$data['sort'];
+		$query .= ' ORDER BY '.$data['table'].'.'.$data['order'].' '.$data['sort'];
 		$query .= $data['limit'] ? ' LIMIT '.$data['limit'] : '';
 		
 		if (!($stmt = $this->prepare($query))) {

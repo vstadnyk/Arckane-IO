@@ -6,6 +6,29 @@
 			"text":"{{this->form_title}}",
 			"html":true
 		},
+		"first_name":{
+			"required":true,
+			"class":"row-100",
+			"pclass":"padding-0-0-10"
+		},
+		"last_name":{
+			"required":true,
+			"class":"row-100",
+			"pclass":"padding-0-0-10"
+		},
+		"birthday":{
+			"required":true,
+			"class":"row-100",
+			"pclass":"padding-0-0-10"
+		},
+		"category":{
+			"required":true,
+			"tag":"checkboxes",
+			"text":"{{this->select_category}}",
+			"class":"row-100",
+			"pclass":"padding-0-0-10",
+			"options":"{{this->select_categories}}"
+		},
 		"mail":{
 			"required":true,
 			"type":"email",
@@ -28,15 +51,14 @@
 		"submit":{
 			"tag":"button",
 			"type":"submit",
-			"value":"{{this->button_login}}",
+			"value":"{{this->button_register}}",
 			"private":true
 		}
 	},
 	"form":{
-		"class":"login-form",
+		"class":"register-form",
 		"method":"post",
-		"action":"ajax.php?type=login&todo=submit",
-		"data-name":"login:form"
+		"action":"ajax.php?type=register&todo=submit"
 	},
 	"table":false,
 	"uploaded_dir":false,

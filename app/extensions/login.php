@@ -1,5 +1,5 @@
 <?
-final class Extensionlogin extends Extension {
+final class ExtensionLogin extends Extension {
 	private $user = false;
 	
 	function __construct ($data = array(), $page) {
@@ -31,7 +31,7 @@ final class Extensionlogin extends Extension {
 			);
 			
 			if ($this->form->validate() && !count($this->form->message)) {
-				$this->data['shown'] = 1;
+				$this->data['status'] = 1;
 				
 				!$this->user && $this->get() ? $this->_set() : $confirm = array(
 					'type' => 'error',
@@ -55,8 +55,8 @@ final class Extensionlogin extends Extension {
 		));
 	}
 	public function get() {
-		$result = $this->model('user')->get($this->data);
-		$result = count((array)$result) ? $result->{0} : false;
+		$result = $this->model('user', $this->data)->get();
+		$result = count((array)$result) ? $result : false;
 		
 		if (!$result) return false;
 		

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Сен 04 2016 г., 10:42
+-- Время создания: Сен 04 2016 г., 18:00
 -- Версия сервера: 10.1.13-MariaDB
 -- Версия PHP: 7.0.8
 
@@ -61,7 +61,16 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `parent`, `name`, `type`, `status`, `meta`, `position`) VALUES
-(1, 0, '', 'menu', 1, 0, 1);
+(1, 0, 'Main menu', 'menu', 1, 0, 1),
+(2, 0, 'User menu', 'menu', 1, 0, 2),
+(3, 0, 'Acting & Extras', 'talent', 1, 0, 1),
+(4, 0, 'Acting & Extras', 'job', 1, 0, 1),
+(5, 0, 'Administrator', 'user', 1, 0, 1),
+(6, 0, 'Emcee & Voiceover', 'talent', 1, 0, 2),
+(7, 0, 'Entertaining', 'talent', 1, 0, 3),
+(8, 0, 'Modeling', 'talent', 1, 0, 4),
+(9, 0, 'Promotion', 'talent', 1, 0, 5),
+(10, 0, 'TV Presenting', 'talent', 1, 0, 6);
 
 -- --------------------------------------------------------
 
@@ -134,10 +143,10 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `parent`, `category`, `name`, `router`, `status`, `position`, `attributes`, `lang`) VALUES
-(1, 0, 0, 'Home', 1, 1, 1, 'data-name="router:menu"', 'en'),
-(2, 1, 0, 'sub', 1, 1, 1, 'data-name="router:menu"', 'en'),
-(3, 0, 0, 'Login', 2, 1, 1, 'data-name="router:modal"', 'en'),
-(4, 0, 0, 'Sign in', 3, 1, 2, 'data-name="router:modal"', 'en');
+(1, 0, 1, 'Find audiotions & jobs', 1, 1, 1, 'data-name="router:menu"', 'en'),
+(2, 0, 1, 'Talent database', 1, 1, 2, 'data-name="router:menu"', 'en'),
+(3, 0, 2, 'Login', 2, 1, 1, 'data-name="router:modal"', 'en'),
+(4, 0, 2, 'Sign in', 3, 1, 2, 'data-name="router:modal"', 'en');
 
 -- --------------------------------------------------------
 
@@ -173,7 +182,7 @@ CREATE TABLE `router` (
 INSERT INTO `router` (`id`, `url`, `uri`, `access`) VALUES
 (1, '/', '/', 0),
 (2, '#modal={"type":"login"}', '#', 0),
-(3, '#', '#', 0);
+(3, '#modal={"type":"register"}', '#', 0);
 
 -- --------------------------------------------------------
 
@@ -187,9 +196,17 @@ CREATE TABLE `user` (
   `data` int(11) NOT NULL,
   `login` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `pass` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `mail` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `secret` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`id`, `category`, `data`, `login`, `pass`, `mail`, `secret`, `status`) VALUES
+(1, 5, 0, 'Namir', '741a9ea1e1ffcc5ce547c5b319f439ea', 'namirif@ya.ru', '', 1);
 
 -- --------------------------------------------------------
 
@@ -200,8 +217,8 @@ CREATE TABLE `user` (
 CREATE TABLE `user_data` (
   `id` int(11) NOT NULL,
   `type` int(11) NOT NULL,
-  `mail` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `name` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `first_name` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `last_name` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `birthdate` int(11) NOT NULL,
   `categories` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `gender` int(11) NOT NULL,
@@ -289,7 +306,7 @@ ALTER TABLE `attachment`
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT для таблицы `content`
 --
@@ -324,7 +341,7 @@ ALTER TABLE `router`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `user_data`
 --

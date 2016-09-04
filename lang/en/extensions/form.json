@@ -1,7 +1,8 @@
 {
-	"login_form_title":"Login form",
 	"login":"Login",
 	"pass":"Password",
 	"mail":"Email",
-	"button_login":"Sign in"
+	"first_name":"First name",
+	"last_name":"Last name",
+	"birthday":"Birthday"
 }

@@ -6,7 +6,8 @@
 		"text",
 		"pclass",
 		"options",
-		"p"
+		"p",
+		"icon"
 	],
 	"report_fields_black_list":[
 		"date",

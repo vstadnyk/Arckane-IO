@@ -3,7 +3,7 @@ Arckane.model('form', {
 		done: function() {}
 	},
 	getData: function(form) {
-		var i, ii, el, es, fd = new FormData();
+		var es, fd = new FormData();
 			
 		if (form.tagName != 'FORM') {
 			es = form.q('input').filter(function(e) {
@@ -51,10 +51,9 @@ Arckane.model('form', {
 	submit: {
 		form: function(e) {
 			e.preventDefault();
-			
-			this.core.DOM.set('status', this.querySelectorAll('.confirm')[0], true);
-			
-			this.core.DOM.find('status').trigger('reset');
+
+			this.core.DOM.set('status', this.q('.confirm'), true);
+			this.core.DOM.setEvents().find('status').trigger('reset');
 
 			this.core.ajax.call(this.core, {
 				url: this.action,

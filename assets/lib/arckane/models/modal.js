@@ -13,7 +13,7 @@ Arckane.model('modal', {
 	}
 }).events.extend({
 	build: {
-		modal: function() {
+		modal: function(e) {
 			var _that = this.core;
 			
 			jQuery.magnificPopup.open({

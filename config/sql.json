@@ -234,6 +234,9 @@
 				"pass":{
 					"type":"mediumtext"
 				},
+				"mail":{
+					"type":"mediumtext"
+				},
 				"secret":{
 					"type":"mediumtext"
 				},
@@ -251,10 +254,10 @@
 				"type":{
 					"type":"int(11)"
 				},
-				"mail":{
+				"first_name":{
 					"type":"mediumtext"
 				},
-				"name":{
+				"last_name":{
 					"type":"mediumtext"
 				},
 				"birthdate":{

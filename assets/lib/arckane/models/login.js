@@ -1,28 +1,20 @@
 Arckane.model('login').events.extend({
-	click: {
-		button: function(e) {
-			this.core.DOM.find('form').trigger('submit');
-		}
-	},
-	submit: {
+	load: {
 		form: function(e) {
-			e.preventDefault();
+			var form = this.core.models.find('form');
 			
-			this.core.ajax({
-				url: 'ajax.php',
-				method: 'post',
-				contentType: 'json',
-				formData: true,
-				data: this.core.models.find('form').getData(this).append('controller', 'login').append('todo', 'submit'),
-				done: function(r) {
-					if (e.data.type == 'error') return this;
+			form.options.done = function(r) {
+				setTimeout(function() {
+					if (r.type == 'error') return this;
+					history.go(-1);
+					location.reload(true);
+				}, 100);
+			}
 			
-					setTimeout(function() {
-						!location.hash ? location.hash = '#contents' : false;
-						location.reload(true);
-					}, 100);
-				}
-			});
+			this.core = form;
+			
+			form.DOM.set('form', this);
+			form.DOM.setEvents();
 		}
 	}
 });

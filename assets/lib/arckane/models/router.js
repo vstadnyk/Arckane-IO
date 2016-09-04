@@ -55,19 +55,21 @@ Arckane.model('router', {
 	load: {
 		modal: function(e) {
 			var modal = this.core.models.find('modal');
-			if (!modal || location.hash != this.hash) return this;
-			
+			if (!modal || location.hash != this.hash || !this._root.content) return this;
+
 			modal.build({
 				core: this,
 				close: function() {
 					history.go(-1);
 					jQuery.magnificPopup.close();
 				}
-			}).DOM.find('modal').append(modal.DOM.fromString(this.content)).trigger('build');
+			}).DOM.find('modal').append(this.core.DOM.fromString(this._root.content)).trigger('build');
 		}
 	},
 	get: {
 		modal: function(e) {
+			var _this = this._root;
+			
 			this.core.ajax({
 				url: 'ajax.php?type=modal&todo=get',
 				method: 'post',
@@ -76,8 +78,8 @@ Arckane.model('router', {
 				done: function(r) {
 					log(r.message);
 					if (r.type != 'success') return;
+					_this.content = r.content;
 					this.loadModel(r.scripts);
-					e.target.content = r.content;
 				}
 			});
 		}

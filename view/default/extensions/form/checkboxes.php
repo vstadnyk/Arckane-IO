@@ -1,5 +1,6 @@
 <? if ($field->options) { ?>
 	<? echo $field->p ? '<div' : ''; echo isset($field->pclass) ? ' class="'.$field->pclass.'"' : ''; echo $field->p ? '>' : ''; ?>
+		<? echo isset($field->text) ? $field->text : ''; ?>
 		<div class="checkboxes" data-name="elements:checkboxes">
 			<input type="hidden" name="<? echo $field->iname; ?>" value="0" data-name="elements:checkboxesResult">
 			<? foreach ($field->options as $item) { ?>
@@ -8,8 +9,7 @@
 					<span>
 						<i class="fa fa-check"></i>
 						<? echo $item->name; ?>
-						<span class="right"><? echo $item->price; ?></span>
-					</span>					
+					</span>
 				</label>
 			<? } ?>
 		</div>
