@@ -3,7 +3,6 @@ final class ExtensionModal extends Extension {
 	public $message = array();
 	
 	function __construct ($data, $page) {
-		$this->scripts[] = '/assets/lib/magnific-popup/magnific-popup.min.js';
 		$this->scripts[] = '/assets/lib/arckane/models/modal.js';
 		
 		parent::__construct($data, $page);

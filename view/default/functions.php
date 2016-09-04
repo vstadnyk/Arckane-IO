@@ -10,6 +10,7 @@ $this->set_link(array(
 
 $this->set_script(array(
 	'https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js',
+	'/assets/lib/magnific-popup/magnific-popup.min.js',
 	'/assets/lib/es6.js',
 	'/assets/lib/arckane/arckane.js',
 	'/assets/lib/arckane/models/element.js',
@@ -17,13 +18,13 @@ $this->set_script(array(
 ));
 
 $this->menu = $this->modules->get('menu', array(
-	'menu_group' => 1,
+	'category' => 1,
 	'status' => 1,
 	'use_attributes' => true
 ));
 
 $this->user_menu = $this->modules->get('menu', array(
-	'menu_group' => 2,
+	'category' => 2,
 	'status' => 1,
 	'use_attributes' => true
 ));

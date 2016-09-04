@@ -31,7 +31,7 @@ Arckane.model('router', {
 	},
 	loadModel: function(scripts) {
 		this.each(scripts, function(s, k) {
-			s = this.DOM.create('script', {src: s+'?_='+new Date().getTime()});
+			s = this.DOM.create('script', {src: s});
 			
 			s.on('load', function() {
 				k == scripts.length - 1 ? this.core.render() : false;
@@ -44,7 +44,6 @@ Arckane.model('router', {
 				this.render();
 			}
 		});
-		this.render();
 	},
 	render: function() {
 		this.each(this.models, function(m) {
@@ -55,7 +54,16 @@ Arckane.model('router', {
 }).start().events.extend({
 	load: {
 		modal: function(e) {
-			this.core.models.find('modal') && location.hash == this.hash ? log(this.models.find('modal')) : false;
+			var modal = this.core.models.find('modal');
+			if (!modal || location.hash != this.hash) return this;
+			
+			modal.build({
+				core: this,
+				close: function() {
+					history.go(-1);
+					jQuery.magnificPopup.close();
+				}
+			}).DOM.find('modal').append(modal.DOM.fromString(this.content)).trigger('build');
 		}
 	},
 	get: {
@@ -67,15 +75,9 @@ Arckane.model('router', {
 				data: this.core.history.last().param,
 				done: function(r) {
 					log(r.message);
-					if (r.type != 'success') return;log(this)
+					if (r.type != 'success') return;
 					this.loadModel(r.scripts);
-
-					/* modal.build({
-						core: this,
-						close: function() {
-							log(history.go(-1))
-						}
-					}).DOM.find('modal').append(this.DOM.fromString(r.content)); */
+					e.target.content = r.content;
 				}
 			});
 		}
