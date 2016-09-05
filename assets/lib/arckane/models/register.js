@@ -1,4 +1,4 @@
-Arckane.model('login').events.extend({
+Arckane.model('register').events.extend({
 	load: {
 		form: function(e) {
 			var form = this.core.models.find('form');
@@ -12,7 +12,7 @@ Arckane.model('login').events.extend({
 			}
 			
 			this.core = form;
-			
+
 			form.DOM.set('form', this, true);
 			form.DOM.setEvents();
 			form.DOM.trigger('load');

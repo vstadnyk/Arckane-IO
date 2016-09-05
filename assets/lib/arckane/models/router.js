@@ -59,6 +59,9 @@ Arckane.model('router', {
 
 			modal.build({
 				core: this,
+				open: function() {
+					this.core.models.find('elements') ? this.core.models.find('elements').DOM.init() : false;
+				},
 				close: function() {
 					history.go(-1);
 					jQuery.magnificPopup.close();
@@ -69,6 +72,8 @@ Arckane.model('router', {
 	get: {
 		modal: function(e) {
 			var _this = this._root;
+			
+			this.core.models.find('modal') ? this.core.models.find('modal').close() : false;
 			
 			this.core.ajax({
 				url: 'ajax.php?type=modal&todo=get',

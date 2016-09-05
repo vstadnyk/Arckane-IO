@@ -26,4 +26,5 @@ k=Math.max(n>=0?n:len-Math.abs(n),0);while(k<len){if(k in O&&O[k]===searchElemen
 k++;}
 return-1;};}
 (function(DOMParser){try{if((new DOMParser()).parseFromString('','text/html'))return;}catch(ex){}
-DOMParser.prototype.parseFromString=function(markup,type){if(/^\s*text\/html\s*(?:;|$)/i.test(type)){var doc=document.implementation.createHTMLDocument('');markup.toLowerCase().indexOf('<!doctype')>-1?doc.documentElement.innerHTML=markup:doc.body.innerHTML=markup;return doc;}else{return DOMParser.prototype.parseFromString.apply(this,arguments);}};}(DOMParser));
+DOMParser.prototype.parseFromString=function(markup,type){if(/^\s*text\/html\s*(?:;|$)/i.test(type)){var doc=document.implementation.createHTMLDocument('');markup.toLowerCase().indexOf('<!doctype')>-1?doc.documentElement.innerHTML=markup:doc.body.innerHTML=markup;return doc;}else{return DOMParser.prototype.parseFromString.apply(this,arguments);}};}(DOMParser));(function(window){if("onhashchange"in window.document.body){return;}
+var location=window.location,oldURL=location.href,oldHash=location.hash;setInterval(function(){var newURL=location.href,newHash=location.hash;if(newHash!=oldHash&&typeof window.onhashchange==="function"){window.onhashchange({type:"hashchange",oldURL:oldURL,newURL:newURL});oldURL=newURL;oldHash=newHash;}},100);})(window);

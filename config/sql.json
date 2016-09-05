@@ -225,9 +225,6 @@
 				"category":{
 					"type":"int(11)"
 				},
-				"data":{
-					"type":"int(11)"
-				},
 				"login":{
 					"type":"mediumtext"
 				},
@@ -251,7 +248,7 @@
 				"id":{
 					"type":"int(11)"
 				},
-				"type":{
+				"user":{
 					"type":"int(11)"
 				},
 				"first_name":{

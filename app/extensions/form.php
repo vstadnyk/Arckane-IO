@@ -96,11 +96,11 @@ final class ExtensionForm extends Extension {
 		foreach ($data as $name => $value) {
 			if (in_array($name, $this->config['system_attributes'])) continue;
 			
-			if (in_array($name, array('value', 'placeholder'))) {
+			if (in_array($name, array('value', 'placeholder', 'href'))) {
 				$value = $this->execute($value);
 			}
 			
-			$result[] = $name.'="'.$value.'"';
+			$result[] = $name != 'href' ? $name.'="'.$value.'"' :  $name."='".$value."'";
 		}
 		
 		return implode(' ', $result);
@@ -171,6 +171,10 @@ final class ExtensionForm extends Extension {
 			unset($field['type']);
 			unset($field['placeholder']);
 			unset($field['required']);
+		}
+		
+		if (isset($field['href'])) {
+			$field['href'] = $this->execute($field['href']);
 		}
 		
 		$field['text'] = $this->execute($field['text']);

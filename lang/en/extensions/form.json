@@ -4,5 +4,8 @@
 	"mail":"Email",
 	"first_name":"First name",
 	"last_name":"Last name",
-	"birthday":"Birthday"
+	"label_birthday":"Birthday",
+	"day":"Day",
+	"month":"Month",
+	"year":"Year"
 }

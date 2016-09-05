@@ -4,8 +4,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', true);
 ini_set('log_errors', true);
 
-if (version_compare(phpversion(), '5.1.0', '<') == true) {
-	exit('PHP 5.1+ Required');
+if (version_compare(phpversion(), '5.4.0', '<') == true) {
+	exit('PHP 5.4+ Required');
 }
 
 if (ini_get('magic_quotes_gpc')) {

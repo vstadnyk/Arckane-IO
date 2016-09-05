@@ -3,7 +3,6 @@ final class ExtensionLogin extends Extension {
 	private $user = false;
 	
 	function __construct ($data = array(), $page) {
-		$this->scripts[] = '/assets/lib/arckane/models/form.js';
 		$this->scripts[] = '/assets/lib/arckane/models/login.js';
 		
 		parent::__construct($data, $page);
@@ -40,10 +39,10 @@ final class ExtensionLogin extends Extension {
 			}
 		} else {
 			$confirm = array(
-				'type' => 'error',
+				'type' => 'success',
 				'message' => $this->lang->get('already_login')
 			);
-		}		
+		}
 		
 		return json_encode(array_merge(json_decode($this->form->confirm(), true), $confirm));
 	}

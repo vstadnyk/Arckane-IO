@@ -4,8 +4,11 @@ final class ExtensionModal extends Extension {
 	
 	function __construct ($data, $page) {
 		$this->scripts[] = '/assets/lib/arckane/models/modal.js';
+		$this->scripts[] = '/assets/lib/arckane/models/form.js';
+		$this->scripts[] = '/assets/lib/arckane/models/elements.js';
 		
 		parent::__construct($data, $page);
+		
 		$this->message = array(
 			'type' => 'error',
 			'message' => $this->lang->get('error_load')
@@ -26,8 +29,8 @@ final class ExtensionModal extends Extension {
 			}
 		}
 		
-		if (in_array('type', array_keys($this->data))) {
-			$exe = $this->extension($this->data['type'], $this->data);
+		if (in_array('action', array_keys($this->data))) {
+			$exe = $this->extension($this->data['action'], $this->data);
 			$this->message['content'] = $exe->render();
 			$this->message['scripts'] = array_merge($this->scripts, $exe->scripts);
 		}

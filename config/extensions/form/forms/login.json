@@ -36,7 +36,7 @@
 		"class":"login-form",
 		"method":"post",
 		"action":"ajax.php?type=login&todo=submit",
-		"data-name":"login:form"
+		"data-name":"form:form"
 	},
 	"table":false,
 	"uploaded_dir":false,

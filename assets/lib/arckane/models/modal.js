@@ -10,6 +10,9 @@ Arckane.model('modal', {
 		this.DOM.set('modal', this.DOM.create('div', {'class':'modal'}));
 		this.DOM.init();
 		return this;
+	},
+	close: function() {
+		jQuery.magnificPopup.close();
 	}
 }).events.extend({
 	build: {

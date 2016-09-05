@@ -13,33 +13,6 @@
 			"text":"{{this->form_title}}",
 			"html":true
 		},
-		"first_name":{
-			"required":false,
-			"class":"row-100",
-			"pclass":"padding-0-0-10"
-		},
-		"last_name":{
-			"required":false,
-			"class":"row-100",
-			"pclass":"padding-0-0-10"
-		},
-		"birthday":{
-			"tag":"date",
-			"placeholder":false,
-			"required":false,
-			"class":"row-100",
-			"pclass":"padding-0-0-10"
-		},
-		"categories":{
-			"required":false,
-			"tag":"checkboxes",
-			"iname":"categories",
-			"text":"{{this->select_category}}",
-			"multyple":true,
-			"class":"row-100",
-			"pclass":"padding-0-0-10",
-			"options":"{{this->select_categories}}"
-		},
 		"mail":{
 			"required":false,
 			"type":"email",

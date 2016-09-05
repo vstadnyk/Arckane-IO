@@ -3,6 +3,7 @@
 	background: white;
 	display: inline-block;
 	position: relative;
+	text-align: left;
 }
 .modal > form {
 	display: inline-block;
@@ -13,4 +14,20 @@
 }
 .login-form {
 	min-width: 250px;
+}
+.register-form {
+	min-width: 250px;
+}
+.checkboxes label {
+	width: 49%;
+	cursor: pointer;
+}
+.checkboxes label span {
+	display: block;
+}
+.checkboxes label span i {
+	display: none;
+}
+.checkboxes label input:checked + span i {
+	display: inline-block;
 }

@@ -26,17 +26,16 @@ class MySQL extends MySQLi {
 		$this->query("SET SQL_MODE = ''"); */
 	}
 	public function escape ($value) {
-		is_array($value) ? $value = mysql_real_escape_string (json_encode(array_filter($value, create_function('$v', 'return $v !== "";'))), $this->connection) : false;
+		is_array($value) ? $value = $this->real_escape_string(
+			json_encode(array_filter($value), JSON_UNESCAPED_SLASHES), $this->connection
+		) : false;
 		
-		!is_numeric($value) ? $result = '"'.$value.'"' : $result = $value;
+		!is_numeric($value) ? $result = '"'.$this->real_escape_string($value).'"' : $result = $value;
 		
         return $result;
     }
-    public function countAffected () {
-        return mysql_affected_rows($this->connection);
-    }
     public function getLastId () {
-        return mysql_insert_id($this->connection);
+        return $this->insert_id;
     }
 	public function __destruct () {
         //mysql_close($this->connection);
@@ -57,21 +56,7 @@ class MySQL extends MySQLi {
 		return json_decode(json_encode($data, JSON_FORCE_OBJECT));
 	}
 	public function to_object ($array = array()) {
-		if (!count($array)) return $array;
-		$object = new stdClass();
-
-		foreach ($array as $index => $item) {
-			if (is_array($item)) {
-				$object->{$index} = new stdClass();
-				foreach ($item as $key => $value) {
-					$object->{$index}->{$key} = $value;
-				}
-			} else {
-				$object->{$index} = $item;
-			}
-		}
-		
-		return $object;
+		return json_decode(json_encode($array, JSON_FORCE_OBJECT));
 	}
 	public function get_fields ($data = false) {
 		if (!$data) return '*';
@@ -105,6 +90,41 @@ class MySQL extends MySQLi {
 		}
 		
 		return $this->get($this->build_select($data));
+	}
+	public function insert ($data = array()) {
+		if ($result = $this->query($this->build_insert($data)) && isset($data['join']) && isset($data['join']['on'])) {
+			$data['table'] = $data['join']['table'];
+			
+			$join = explode(' = ', $data['join']['on']);
+			$join = explode('.', $join[0]);
+			$data[array_pop($join)] = $this->getLastId();
+
+			$result = $this->query($this->build_insert($data));
+		}
+		
+		return $result;
+	}
+	private function build_insert ($data = array()) {
+		if (!isset($data['table'])) return false;
+
+		$fields = $values = array();
+		$table_config = $this->SQLconfig['tables'][$data['table']];
+		$fields_config = array_keys($table_config['fields']);
+		
+		foreach ($data as $field => $value) {
+			if (in_array($field, $fields_config)) {
+				$fields[] = $field;
+				$values[] = $this->escape($value);
+			}
+		}
+		
+		$query = 'INSERT INTO '.$data['table'].'('.implode(', ', $fields).') values ('.implode(', ', $values).')';
+
+		if (!($stmt = $this->prepare($query))) {
+			exit ('Error: #'.$this->errno.' in prepare query '.$query);
+		}
+
+		return $query;
 	}
 	private function build_fields ($data = array(), $fields) {
 		return array_filter(array_map(function($field) use($data) {
