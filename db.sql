@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Время создания: Сен 04 2016 г., 18:00
--- Версия сервера: 10.1.13-MariaDB
--- Версия PHP: 7.0.8
+-- Хост: 127.0.0.1
+-- Время создания: Сен 05 2016 г., 17:05
+-- Версия сервера: 10.1.16-MariaDB
+-- Версия PHP: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -70,7 +70,8 @@ INSERT INTO `category` (`id`, `parent`, `name`, `type`, `status`, `meta`, `posit
 (7, 0, 'Entertaining', 'talent', 1, 0, 3),
 (8, 0, 'Modeling', 'talent', 1, 0, 4),
 (9, 0, 'Promotion', 'talent', 1, 0, 5),
-(10, 0, 'TV Presenting', 'talent', 1, 0, 6);
+(10, 0, 'TV Presenting', 'talent', 1, 0, 6),
+(11, 0, 'Member', 'user', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -181,8 +182,8 @@ CREATE TABLE `router` (
 
 INSERT INTO `router` (`id`, `url`, `uri`, `access`) VALUES
 (1, '/', '/', 0),
-(2, '#modal={"type":"login"}', '#', 0),
-(3, '#modal={"type":"register"}', '#', 0);
+(2, '#modal={"action":"login"}', '#', 0),
+(3, '#modal={"action":"register"}', '#', 0);
 
 -- --------------------------------------------------------
 
@@ -193,7 +194,6 @@ INSERT INTO `router` (`id`, `url`, `uri`, `access`) VALUES
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `category` int(11) NOT NULL,
-  `data` int(11) NOT NULL,
   `login` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `pass` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `mail` mediumtext COLLATE utf8_unicode_ci NOT NULL,
@@ -205,8 +205,8 @@ CREATE TABLE `user` (
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`id`, `category`, `data`, `login`, `pass`, `mail`, `secret`, `status`) VALUES
-(1, 5, 0, 'Namir', '741a9ea1e1ffcc5ce547c5b319f439ea', 'namirif@ya.ru', '', 1);
+INSERT INTO `user` (`id`, `category`, `login`, `pass`, `mail`, `secret`, `status`) VALUES
+(17, 11, '', '741a9ea1e1ffcc5ce547c5b319f439ea', 'namirif@gmail.com', 'b0392fdcddbc6ccdc6f070f6d26b4b0f82ec83df', 1);
 
 -- --------------------------------------------------------
 
@@ -216,7 +216,7 @@ INSERT INTO `user` (`id`, `category`, `data`, `login`, `pass`, `mail`, `secret`,
 
 CREATE TABLE `user_data` (
   `id` int(11) NOT NULL,
-  `type` int(11) NOT NULL,
+  `user` int(11) NOT NULL,
   `first_name` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `last_name` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `birthdate` int(11) NOT NULL,
@@ -228,6 +228,13 @@ CREATE TABLE `user_data` (
   `city` int(11) NOT NULL,
   `language` mediumtext COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `user_data`
+--
+
+INSERT INTO `user_data` (`id`, `user`, `first_name`, `last_name`, `birthdate`, `categories`, `gender`, `nationality`, `apperance`, `country`, `city`, `language`) VALUES
+(8, 17, '', '', 0, '{"4":"9"}', 0, 0, '', 0, 0, '');
 
 --
 -- Индексы сохранённых таблиц
@@ -306,7 +313,7 @@ ALTER TABLE `attachment`
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT для таблицы `content`
 --
@@ -341,12 +348,12 @@ ALTER TABLE `router`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT для таблицы `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
